@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>영화 예매 시스템</title>
+</head>
+<body>
+<form id="frm" method="post" action="./confirm_reservation.do">
+<p>영화 예매 시스템</p>
+고객명 : <input type="text" name="mname"><br>
+연락처 : <input type="text" name="mtel" minlength="10" maxlength="11"> "-"없이 숫자만 입력<br>
+영화선택 :<br>
+<input type="radio" name="mmovie" value="히트맨2">히트맨2<br>
+<input type="radio" name="mmovie" value="써니데이">써니데이<br>
+<input type="radio" name="mmovie" value="브루타리스트">브루타리스트<br>
+<input type="radio" name="mmovie" value="히어">히어<br>
+<input type="radio" name="mmovie" value="하얼빈">하얼빈<br>
+<br>
+예매일자 : <input type="date" name="mdate"><br>
+<br>
+&nbsp&nbsp&nbsp<input type="button" value="예매하기" onclick="reserve()" style="background-color: navy; color: white;">
+</form>
+</body>
+<script>
+function reserve(){
+	var count = 0;
+	for(var i=0; i<frm.mmovie.length; i++){
+		if(frm.mmovie[i].checked == true){
+			count++;
+			break;
+		}
+	}
+
+	if(frm.mname.value == ""){
+		alert("고객명을 입력하세요");
+		frm.mname.focus();
+	}else if(frm.mtel.value == ""){
+		alert("연락처를 입력하세요");
+		frm.mtel.focus();
+	}else if(count == 0){
+		alert("영화를 선택해 주세요.");
+	}else if(frm.mdate.value == ""){
+		alert("예매일자를 셋팅하세요");
+	}else if(new Date(frm.mdate.value) < new Date().setHours(0,0,0,0)){
+		alert("예매일자는 오늘 이후의 날짜를 선택해야 합니다.");
+	}else{
+		frm.submit();
+	}
+}
+</script>
+</html>

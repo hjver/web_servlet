@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원 가입</title>
+</head>
+<body>
+<form id="frm" method="post" action="./signupok.do" enctype="multipart/form-data" onsubmit="return ok()">
+회원가입 정보 입력(간편가입)<br>
+아이디 <input type="text" name="mid"><br>
+고객명 <input type="text" name="mname"><br>
+비밀번호 <input type="text" name="mpass"><br>
+이메일 <input type="text" name="memail"><br>
+휴대폰번호 <input type="text" name="mtelno"><br>
+이미지 <input type="file" name="mfile"><br>
+<input type="submit" value="가입완료">
+</form>
+</body>
+<script>
+function ok(){
+	return true;
+}
+</script>
+</html>

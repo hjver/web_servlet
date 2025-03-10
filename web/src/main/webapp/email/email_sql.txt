@@ -1,0 +1,9 @@
+create table mailto(
+eidx int not null auto_increment,
+to_name char(20) not null,
+to_mail varchar(50) not null,
+subject varchar(50) not null,
+context text not null,
+edate timestamp not null default current_timestamp,
+primary key(eidx)
+);
