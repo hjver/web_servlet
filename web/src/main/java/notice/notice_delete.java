@@ -43,7 +43,7 @@ public class notice_delete extends HttpServlet {
 				//사용자가 입력한 패스워드를 md5로 변환 후 DB에 저장된 값과 비교 후 삭제
 				npw = md5.md5_code(npw);
 				if(npw.equals(ori_pw)) {
-					this.con = this.db.getConnection();
+					this.con = this.db.getConnection(); //보안상 조건문에에서 DB연결
 					this.sql = "delete from notice where nidx=?";
 					this.ps = this.con.prepareStatement(this.sql);
 					this.ps.setString(1, nidx);
