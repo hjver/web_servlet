@@ -1,8 +1,9 @@
+<%@page import="mallpage.corpinfo_dto"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	ArrayList<String> cpdata = (ArrayList)request.getAttribute("cpdata");
+	corpinfo_dto cpdata = (corpinfo_dto)request.getAttribute("cpdata");
 %>
     <div class="footer">
       <a href="http://facebook.com">
@@ -21,16 +22,16 @@
         <ul>
         <li><img src="./images/foot_logo.png"></li>
         <li>
-회사명 : <%=cpdata.get(0)%>
-대표자 : <%=cpdata.get(1)%>
-주소 : <%=cpdata.get(2)%>  <br>
-고객센터 : <%=cpdata.get(3)%>
-상담시간 : <%=cpdata.get(4)%>
-E-Mail : <%=cpdata.get(5)%>
-사업자등록번호 : <%=cpdata.get(6)%> <br>
-통신판매업신고번호 : <%=cpdata.get(7)%>
-개인정보보호책임자 : <%=cpdata.get(8)%>   <br>
-Copyright © <%=cpdata.get(9)%> All Rights Reserved.
+회사명 : <%=cpdata.getCorp_nm()%>
+대표자 : <%=cpdata.getCeo_nm()%>
+주소 : <%=cpdata.getCorp_addr()%>  <br>
+고객센터 : <%=cpdata.getCorp_tel()%>
+상담시간 : <%=cpdata.getCorp_time()%>
+E-Mail : <%=cpdata.getCeo_email()%>
+사업자등록번호 : <%=cpdata.getCorp_no()%> <br>
+통신판매업신고번호 : <%=cpdata.getCorp_no2()%>
+개인정보보호책임자 : <%=cpdata.getCorp_master()%>   <br>
+Copyright © <%=cpdata.getCorp_domain()%> All Rights Reserved.
         </li>
         </ul>    
         </div>
