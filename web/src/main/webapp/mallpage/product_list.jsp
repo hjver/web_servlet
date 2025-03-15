@@ -1,10 +1,9 @@
-<%@page import="java.text.NumberFormat"%>
-<%@page import="java.text.DecimalFormat"%>
+<%@page import="mallpage.ProductDto"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-ArrayList<ArrayList<String>> all = (ArrayList)request.getAttribute("all");
+ArrayList<ProductDto> products = (ArrayList)request.getAttribute("products");
 %>
 <!DOCTYPE html>
 <html>
@@ -12,51 +11,28 @@ ArrayList<ArrayList<String>> all = (ArrayList)request.getAttribute("all");
 <meta charset="UTF-8">
 <title>상품리스트 출력 파트</title>
 <style>
-s {
-color: red;
+s{
+	color:red
 }
 </style>
 </head>
+
 <body>
 <table>
 <tbody>
-<%
-int w = 0;
-while(w < all.size()){
-	//숫자만 적용됨(문자X)
-	DecimalFormat df = new DecimalFormat("###,###");
+<%for(int i=0; i<products.size(); i++){
 %>
-<!-- 상품에 대한 고유값(auto_increment) -->
-<tr onclick="product_view('<%=all.get(w).get(0)%>')">
-<td><img src=".<%=all.get(w).get(6)%>"></td>
-<td>상품명 : <%=all.get(w).get(2)%></td>
-
-<td>
-<% if(all.get(w).get(4).intern() == "0") { %>
-상품금액 : <%=df.format(Integer.parseInt(all.get(w).get(3)))%> 원
-<% } else { %>
-<s>상품금액 : <%=df.format(Integer.parseInt(all.get(w).get(3)))%> 원</s>
-<% } %>
-</td>
-
-<% if(all.get(w).get(4).intern() != "0") { %>
-<td>할인율 : <%=all.get(w).get(4)%> %</td>
-<td>할인금액 : <%=df.format(Integer.parseInt(all.get(w).get(5)))%> 원</td>
-<% } %>
+<tr>
+<td><a href="./product_list.do?midx=<%=products.get(i).getMidx()%>"><img src=".<%=products.get(i).getPimg()%>"></a></td>
+<td>상품명 : "<%=products.get(i).getPnm()%>"</td>
+<td>상품금액 : <s>"<%=products.get(i).getPmoney()%>" 원</s></td>
+<td>할인율 : "<%=products.get(i).getPsales()%>" %</td>
+<td>할인금액 : "<%=products.get(i).getPsmoney()%>" 원</td>
 </tr>
 <%
-	w++;
 }
 %>
 </tbody>
 </table>
-<script>
-//SPA => React, Vue, ECMA
-//product_list.do : 전체리스트 상품출력 & 각 상품에 대한 상세내역
-function product_view(midx){
-	location.href='./product_list.do?midx='+midx;
-}
-</script>
-
 </body>
 </html>
